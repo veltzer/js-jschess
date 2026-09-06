@@ -24,7 +24,6 @@ dep_inputs = [
 
 [processor.shellcheck]
 src_dirs = ["scripts", "docs", "config"]
-args = ["--severity=error", "--shell=bash"]
 
 # ─── lua ─────────────────────────────────────────────────────────────────────
 
@@ -58,3 +57,27 @@ output_dirs = ["docs/jsdoc"]
 # lint the GitHub Actions workflow files with actionlint
 [processor.actionlint]
 src_dirs = [".github/workflows"]
+
+# ─── markdown ────────────────────────────────────────────────────────────────
+
+[processor.rumdl]
+src_files = ["README.md"]
+
+# ─── json ────────────────────────────────────────────────────────────────────
+
+[processor.ijsonlint]
+src_dirs = ["support"]
+src_files = ["package.json"]
+
+# ─── html ────────────────────────────────────────────────────────────────────
+
+# not linted: docs/jsdoc (generated jsdoc output)
+[processor.htmlhint]
+src_dirs = ["docs"]
+
+# ─── javascript ──────────────────────────────────────────────────────────────
+
+# not linted: docs/jsdoc (generated jsdoc output)
+[processor.eslint]
+src_dirs = ["docs"]
+args = ["-c", ".eslint.config.js"]

@@ -28,7 +28,6 @@
         <article>
             <pre class="prettyprint source linenums"><code>/* vim:set filetype=javascript:*/
 /*jsl:import Utils.js*/
-/*global Class, Utils*/
 
 
 /**
@@ -46,6 +45,9 @@ var SvgControls = Class.create(/** @lends SvgControls.prototype */{
     Utils.pass(config);
   }
 });
+
+// the demo pages use this class as a browser global
+window.SvgControls = SvgControls;
 </code></pre>
         </article>
     </section>

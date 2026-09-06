@@ -28,7 +28,6 @@
         <article>
             <pre class="prettyprint source linenums"><code>/* vim:set filetype=javascript:*/
 /*jsl:import Utils.js*/
-/*global Ajax, Class, Chess, Utils */
 
 
 /**
@@ -79,6 +78,9 @@ var PgnReader = Class.create(/** @lends PgnReader.prototype */{
     Utils.fakeUse(req);
   }
 });
+
+// the demo pages use this class as a browser global
+window.PgnReader = PgnReader;
 </code></pre>
         </article>
     </section>

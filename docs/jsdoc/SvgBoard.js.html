@@ -36,7 +36,6 @@
 /*jsl:import Utils.js*/
 /*jsl:import Config.js*/
 /*jsl:import SvgConfigTmpl.js*/
-/*global Class, Config, SvgConfigTmpl, $, WRaphael, Utils, Raphael, PiecePosition, SvgPieceData, SvgCreator, SvgPixelPosition */
 
 
 /**
@@ -606,7 +605,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
   */
   rotateright: function() {
     var oldview = this.boardview;
-    if (!(SvgBoard.ObjRotateRight.hasOwnProperty(oldview))) {
+    if (!(Object.prototype.hasOwnProperty.call(SvgBoard.ObjRotateRight, oldview))) {
       throw 'boardview is bad';
     }
     this.boardview = SvgBoard.ObjRotateRight[this.boardview];
@@ -620,7 +619,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
   */
   rotateleft: function() {
     var oldview = this.boardview;
-    if (!(SvgBoard.ObjRotateLeft.hasOwnProperty(oldview))) {
+    if (!(Object.prototype.hasOwnProperty.call(SvgBoard.ObjRotateLeft, oldview))) {
       throw 'boardview is bad';
     }
     this.boardview = SvgBoard.ObjRotateLeft[this.boardview];

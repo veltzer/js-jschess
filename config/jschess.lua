@@ -9,7 +9,8 @@ JSCHESS_JS_SECTION_HIGHLIGHT = [[
 JSCHESS_GETJSTHIRDPARTY = [[<script type="text/javascript" src="out/web/third_party/prototype.min.js"></script>
 <script type="text/javascript" src="out/web/third_party/raphael.min.js"></script>
 <script type="text/javascript" src="out/web/third_party/chess.min.js"></script>]]
-JSCHESS_GETJSTHIRDPARTY_ESCAPED = [[&lt;script type=&quot;text/javascript&quot; src=&quot;out/web/third_party/prototype.min.js&quot;&gt;&lt;/script&gt;
+JSCHESS_GETJSTHIRDPARTY_ESCAPED = [[
+&lt;script type=&quot;text/javascript&quot; src=&quot;out/web/third_party/prototype.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;out/web/third_party/raphael.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;out/web/third_party/chess.min.js&quot;&gt;&lt;/script&gt;]]
 RUNTIMEDEPS = {

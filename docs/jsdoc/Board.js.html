@@ -32,7 +32,6 @@
 /*jsl:import PieceColor.js*/
 /*jsl:import PieceType.js*/
 /*jsl:import PiecePosition.js*/
-/*global Class, BoardPiece, PieceColor, PieceType, PiecePosition, BoardPosition */
 
 
 /**
@@ -338,6 +337,9 @@ var Board = Class.create(/** @lends Board.prototype */{
     throw 'piece not on board ' + boardPiece;
   }
 });
+
+// the demo pages use this class as a browser global
+window.Board = Board;
 </code></pre>
         </article>
     </section>

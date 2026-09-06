@@ -27,7 +27,6 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/* vim:set filetype=javascript:*/
-/*global Class */
 
 
 /**
@@ -44,7 +43,7 @@ var PieceColor = Class.create(/** @lends PieceColor.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   initialize: function(color) {
-    if (!(PieceColor.colors.hasOwnProperty(color))) {
+    if (!(Object.prototype.hasOwnProperty.call(PieceColor.colors, color))) {
       throw 'illegal piecetype ' + color;
     }
     this.color = color;

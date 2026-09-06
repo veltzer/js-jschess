@@ -4,7 +4,6 @@
 /*jsl:import PieceColor.js*/
 /*jsl:import PieceType.js*/
 /*jsl:import PiecePosition.js*/
-/*global Class, BoardPiece, PieceColor, PieceType, PiecePosition, BoardPosition */
 
 
 /**
@@ -310,8 +309,10 @@ var Board = Class.create(/** @lends Board.prototype */{
     throw 'piece not on board ' + boardPiece;
   }
 });
+
+// the demo pages use this class as a browser global
+window.Board = Board;
 /* vim:set filetype=javascript:*/
-/*global Class */
 
 
 /**
@@ -375,7 +376,6 @@ var BoardPiece = Class.create(/** @lends BoardPiece.prototype */{
 /*jsl:import PieceColor.js*/
 /*jsl:import PieceType.js*/
 /*jsl:import PiecePosition.js*/
-/*global Class, BoardPiece, PieceColor, PieceType, PiecePosition */
 
 
 /**
@@ -558,7 +558,6 @@ BoardPosition.setupFEN = function(fen) {
 };
 /* vim:set filetype=javascript:*/
 /*jsl:import Utils.js*/
-/*global Class */
 
 
 /**
@@ -650,7 +649,6 @@ var Config = Class.create(/** @lends Config.prototype */{
 });
 /* vim:set filetype=javascript:*/
 /*jsl:import Utils.js*/
-/*global Utils, Class */
 
 
 /**
@@ -685,10 +683,10 @@ var ConfigTmpl = Class.create(/** @lends ConfigTmpl.prototype */{
   */
   add: function(s) {
     Utils.checkEquals(s, ConfigTmpl.fullSet);
-    if (!(ConfigTmpl.types.hasOwnProperty(s.type))) {
+    if (!(Object.prototype.hasOwnProperty.call(ConfigTmpl.types, s.type))) {
       throw 'bad type [' + s.type + ']';
     }
-    if (this.tuples.hasOwnProperty(s.name)) {
+    if (Object.prototype.hasOwnProperty.call(this.tuples, s.name)) {
       throw 'repeat of key [' + s.name + ']';
     }
     this.tuples[s.name] = s;
@@ -703,7 +701,7 @@ var ConfigTmpl = Class.create(/** @lends ConfigTmpl.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   check: function(key, value) {
-    if (!(this.tuples.hasOwnProperty(key))) {
+    if (!(Object.prototype.hasOwnProperty.call(this.tuples, key))) {
       throw 'wrong key [' + key + ']';
     }
     var type_to_check = this.tuples[key].type;
@@ -718,7 +716,7 @@ var ConfigTmpl = Class.create(/** @lends ConfigTmpl.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   hasKey: function(key) {
-    return this.tuples.hasOwnProperty(key);
+    return Object.prototype.hasOwnProperty.call(this.tuples, key);
   },
   /**
     return the default value for a key
@@ -784,7 +782,6 @@ ConfigTmpl.types = {
   t_boolean: 'boolean'
 };
 /* vim:set filetype=javascript:*/
-/*global Element, Class, $ */
 
 
 /**
@@ -826,8 +823,10 @@ var Controls = Class.create(/** @lends Controls.prototype */{
     return 'no toString for type Controls';
   }
 });
+
+// the demo pages use this class as a browser global
+window.Controls = Controls;
 /* vim:set filetype=javascript:*/
-/*global Class */
 
 
 /**
@@ -853,8 +852,10 @@ var Game = Class.create(/** @lends Game.prototype */{
     return 'no toString for type Game';
   }
 });
+
+// the demo pages use this class as a browser global
+window.Game = Game;
 /* vim:set filetype=javascript:*/
-/*global Class */
 
 
 /**
@@ -890,9 +891,11 @@ var GameMove = Class.create(/** @lends GameMove.prototype */{
     return 'no toString for type GameMove';
   }
 });
+
+// the demo pages use this class as a browser global
+window.GameMove = GameMove;
 /* vim:set filetype=javascript:*/
 /*jsl:import Utils.js*/
-/*global Ajax, Class, Chess, Utils */
 
 
 /**
@@ -943,8 +946,10 @@ var PgnReader = Class.create(/** @lends PgnReader.prototype */{
     Utils.fakeUse(req);
   }
 });
+
+// the demo pages use this class as a browser global
+window.PgnReader = PgnReader;
 /* vim:set filetype=javascript:*/
-/*global Class */
 
 
 /**
@@ -961,7 +966,7 @@ var PieceColor = Class.create(/** @lends PieceColor.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   initialize: function(color) {
-    if (!(PieceColor.colors.hasOwnProperty(color))) {
+    if (!(Object.prototype.hasOwnProperty.call(PieceColor.colors, color))) {
       throw 'illegal piecetype ' + color;
     }
     this.color = color;
@@ -1006,7 +1011,6 @@ PieceColor.colors = {
 };
 /* vim:set filetype=javascript:*/
 /*jsl:import Utils.js*/
-/*global Class, Utils */
 
 
 /**
@@ -1073,7 +1077,6 @@ var PiecePosition = Class.create(/** @lends PiecePosition.prototype */{
   }
 });
 /* vim:set filetype=javascript:*/
-/*global Class*/
 
 
 /**
@@ -1089,7 +1092,7 @@ var PieceType = Class.create(/** @lends PieceType.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   initialize: function(type) {
-    if (!(PieceType.types.hasOwnProperty(type))) {
+    if (!(Object.prototype.hasOwnProperty.call(PieceType.types, type))) {
       throw 'illegal piecetype ' + type;
     }
     this.type = type;
@@ -1182,7 +1185,6 @@ PieceType.types = {
 /*jsl:import Utils.js*/
 /*jsl:import Config.js*/
 /*jsl:import SvgConfigTmpl.js*/
-/*global Class, Config, SvgConfigTmpl, $, WRaphael, Utils, Raphael, PiecePosition, SvgPieceData, SvgCreator, SvgPixelPosition */
 
 
 /**
@@ -1752,7 +1754,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
   */
   rotateright: function() {
     var oldview = this.boardview;
-    if (!(SvgBoard.ObjRotateRight.hasOwnProperty(oldview))) {
+    if (!(Object.prototype.hasOwnProperty.call(SvgBoard.ObjRotateRight, oldview))) {
       throw 'boardview is bad';
     }
     this.boardview = SvgBoard.ObjRotateRight[this.boardview];
@@ -1766,7 +1768,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
   */
   rotateleft: function() {
     var oldview = this.boardview;
-    if (!(SvgBoard.ObjRotateLeft.hasOwnProperty(oldview))) {
+    if (!(Object.prototype.hasOwnProperty.call(SvgBoard.ObjRotateLeft, oldview))) {
       throw 'boardview is bad';
     }
     this.boardview = SvgBoard.ObjRotateLeft[this.boardview];
@@ -2056,7 +2058,6 @@ SvgBoard.ObjRotateLeft = {
 };
 /* vim:set filetype=javascript:*/
 /*jsl:import ConfigTmpl.js*/
-/*global ConfigTmpl, Class */
 
 
 /**
@@ -2311,7 +2312,6 @@ SvgConfigTmpl.getInstance = function() {
 };
 /* vim:set filetype=javascript:*/
 /*jsl:import Utils.js*/
-/*global Class, Utils*/
 
 
 /**
@@ -2329,11 +2329,13 @@ var SvgControls = Class.create(/** @lends SvgControls.prototype */{
     Utils.pass(config);
   }
 });
+
+// the demo pages use this class as a browser global
+window.SvgControls = SvgControls;
 /* vim:set filetype=javascript:*/
 /*jsl:import Utils.js*/
 /*jsl:import SvgPathAndAttributes.js*/
 /*jsl:import SvgPiece.js*/
-/*global SvgPathAndAttributes, SvgPiece, Utils, Class */
 
 
 /**
@@ -2719,7 +2721,6 @@ SvgCreator.createPiece = function(config, pieceColor, pieceType) {
   throw 'unknown piece ' + pieceType;
 };
 /* vim:set filetype=javascript:*/
-/*global Class */
 
 
 /**
@@ -2750,7 +2751,6 @@ var SvgPathAndAttributes = Class.create(/** @lends SvgPathAndAttributes.prototyp
   }
 });
 /* vim:set filetype=javascript:*/
-/*global Class, Raphael */
 
 
 /**
@@ -2802,7 +2802,6 @@ var SvgPiece = Class.create(/** @lends SvgPiece.prototype */{
   }
 });
 /* vim:set filetype=javascript:*/
-/*global Class */
 
 
 /**
@@ -2853,7 +2852,6 @@ var SvgPieceData = Class.create(/** @lends SvgPieceData.prototype */{
   }
 });
 /* vim:set filetype=javascript:*/
-/*global Class */
 
 
 /**
@@ -2893,7 +2891,6 @@ var SvgPixelPosition = Class.create(/** @lends SvgPixelPosition.prototype */{
   }
 });
 /* vim:set filetype=javascript:*/
-/*global Class*/
 
 
 /**
@@ -3027,7 +3024,7 @@ Utils.checkType = function(v, t) {
 Utils.checkContains = function(s1, s2) {
   var x;
   for (x in s1) {
-    if (!(s2.hasOwnProperty(x))) {
+    if (!(Object.prototype.hasOwnProperty.call(s2, x))) {
       throw 'key ' + x + ' is bad';
     }
   }
@@ -3046,7 +3043,6 @@ Utils.checkEquals = function(s1, s2) {
   Utils.checkContains(s2, s1);
 };
 /* vim:set filetype=javascript:*/
-/*global Class, Raphael*/
 
 
 /**
@@ -3240,7 +3236,6 @@ function Ajax() {};
 function Raphael() {};
 function Class() {};
 function $() {};
-/*global goog*/
 goog.provide('$');
 goog.provide('Ajax');
 goog.provide('Chess');

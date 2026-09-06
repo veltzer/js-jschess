@@ -5,6 +5,3 @@ files["config"] = {
     allow_defined_top = true,
     ignore = { "131" },
 }
--- generated config tables (baked HTML fragments, keyword lists) can exceed the
--- default line width
-max_line_length = false

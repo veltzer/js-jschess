@@ -1,6 +1,5 @@
 {% set personal = load_lua(path="config/personal.lua") -%}
 /* vim:set filetype=javascript:*/
-/*global Class*/
 
 
 /**
@@ -16,7 +15,7 @@ var PieceType = Class.create(/** @lends PieceType.prototype */{
     @author {{ personal.JSDOC_AUTHOR }}
   */
   initialize: function(type) {
-    if (!(PieceType.types.hasOwnProperty(type))) {
+    if (!(Object.prototype.hasOwnProperty.call(PieceType.types, type))) {
       throw 'illegal piecetype ' + type;
     }
     this.type = type;

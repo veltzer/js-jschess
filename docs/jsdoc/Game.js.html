@@ -27,7 +27,6 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/* vim:set filetype=javascript:*/
-/*global Class */
 
 
 /**
@@ -53,6 +52,9 @@ var Game = Class.create(/** @lends Game.prototype */{
     return 'no toString for type Game';
   }
 });
+
+// the demo pages use this class as a browser global
+window.Game = Game;
 </code></pre>
         </article>
     </section>

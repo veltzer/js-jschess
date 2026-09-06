@@ -1,5 +1,4 @@
 {% set personal = load_lua(path="config/personal.lua") -%}
-/*global goog*/
 goog.provide('$');
 goog.provide('Ajax');
 goog.provide('Chess');

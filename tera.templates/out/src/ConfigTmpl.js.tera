@@ -1,7 +1,6 @@
 {% set personal = load_lua(path="config/personal.lua") -%}
 /* vim:set filetype=javascript:*/
 /*jsl:import Utils.js*/
-/*global Utils, Class */
 
 
 /**
@@ -36,10 +35,10 @@ var ConfigTmpl = Class.create(/** @lends ConfigTmpl.prototype */{
   */
   add: function(s) {
     Utils.checkEquals(s, ConfigTmpl.fullSet);
-    if (!(ConfigTmpl.types.hasOwnProperty(s.type))) {
+    if (!(Object.prototype.hasOwnProperty.call(ConfigTmpl.types, s.type))) {
       throw 'bad type [' + s.type + ']';
     }
-    if (this.tuples.hasOwnProperty(s.name)) {
+    if (Object.prototype.hasOwnProperty.call(this.tuples, s.name)) {
       throw 'repeat of key [' + s.name + ']';
     }
     this.tuples[s.name] = s;
@@ -54,7 +53,7 @@ var ConfigTmpl = Class.create(/** @lends ConfigTmpl.prototype */{
     @author {{ personal.JSDOC_AUTHOR }}
   */
   check: function(key, value) {
-    if (!(this.tuples.hasOwnProperty(key))) {
+    if (!(Object.prototype.hasOwnProperty.call(this.tuples, key))) {
       throw 'wrong key [' + key + ']';
     }
     var type_to_check = this.tuples[key].type;
@@ -69,7 +68,7 @@ var ConfigTmpl = Class.create(/** @lends ConfigTmpl.prototype */{
     @author {{ personal.JSDOC_AUTHOR }}
   */
   hasKey: function(key) {
-    return this.tuples.hasOwnProperty(key);
+    return Object.prototype.hasOwnProperty.call(this.tuples, key);
   },
   /**
     return the default value for a key

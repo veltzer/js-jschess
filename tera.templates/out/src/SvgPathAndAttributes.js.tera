@@ -1,6 +1,5 @@
 {% set personal = load_lua(path="config/personal.lua") -%}
 /* vim:set filetype=javascript:*/
-/*global Class */
 
 
 /**

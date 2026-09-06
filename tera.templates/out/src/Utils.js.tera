@@ -1,6 +1,5 @@
 {% set personal = load_lua(path="config/personal.lua") -%}
 /* vim:set filetype=javascript:*/
-/*global Class*/
 
 
 /**
@@ -134,7 +133,7 @@ Utils.checkType = function(v, t) {
 Utils.checkContains = function(s1, s2) {
   var x;
   for (x in s1) {
-    if (!(s2.hasOwnProperty(x))) {
+    if (!(Object.prototype.hasOwnProperty.call(s2, x))) {
       throw 'key ' + x + ' is bad';
     }
   }
