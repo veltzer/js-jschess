@@ -82,6 +82,6 @@ src_dirs = ["docs"]
 # ─── javascript ──────────────────────────────────────────────────────────────
 
 # not linted: docs/jsdoc (generated jsdoc output)
-[processor.eslint]
+[processor.oxlint]
 src_dirs = ["docs"]
-args = ["-c", ".eslint.config.js"]
+args = ["-c", ".oxlintrc.json"]

@@ -1,10 +1,6 @@
 {
   "dependencies": {
-    "htmlhint": "latest",
     "jsdoc": "latest",
-    "jshint": "latest",
-    "jslint": "latest",
-    "jsmin": "latest",
     "yuicompressor": "latest"
   }
 }
