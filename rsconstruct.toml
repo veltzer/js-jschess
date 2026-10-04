@@ -12,7 +12,7 @@ reject_dot_src_dirs = true
 # listed here must exist: rsconstruct rejects a missing one at config load.
 # Repos still on config/*.py keep a dep_inputs override in their local
 # overlay until converted.
-[processor.tera]
+[processor.generator.tera]
 dep_auto = [
 	"config/project.lua",
 	"config/personal.lua",
@@ -26,17 +26,17 @@ dep_inputs = [
     "config/jschess.lua",
 ]
 
-[processor.shellcheck]
+[processor.checker.shellcheck]
 src_dirs = ["scripts", "docs", "config"]
 
 # ─── lua ─────────────────────────────────────────────────────────────────────
 
-[processor.luacheck]
+[processor.checker.luacheck]
 src_dirs = ["config"]
 
 # ─── toml / yaml / json ──────────────────────────────────────────────────────
 
-[processor.taplo]
+[processor.checker.taplo]
 src_files = [".rumdl.toml", "rsconstruct.toml"]
 
 # The JS packaging pipeline the pydmt-era Makefile used to own: concatenate
@@ -45,7 +45,7 @@ src_files = [".rumdl.toml", "rsconstruct.toml"]
 # docs/jsdoc/ with jsdoc. The out/src/*.js glob matches the tera processor's
 # outputs, so tera renders before this runs. jsdoc output is deterministic
 # (support/jsdoc.json sets includeDate: false).
-[processor.explicit.jsbundle]
+[processor.explicit.generic.jsbundle]
 command = "scripts/build_js.sh"
 inputs = ["package.json", "support/jsdoc.json"]
 input_globs = ["out/src/*.js"]
@@ -59,29 +59,29 @@ output_files = [
 output_dirs = ["docs/jsdoc"]
 
 # lint the GitHub Actions workflow files with actionlint
-[processor.actionlint]
+[processor.checker.actionlint]
 src_dirs = [".github/workflows"]
 
 # ─── markdown ────────────────────────────────────────────────────────────────
 
-[processor.rumdl]
+[processor.checker.rumdl]
 src_files = ["README.md"]
 
 # ─── json ────────────────────────────────────────────────────────────────────
 
-[processor.ijsonlint]
+[processor.checker.ijsonlint]
 src_dirs = ["support"]
 src_files = ["package.json"]
 
 # ─── html ────────────────────────────────────────────────────────────────────
 
 # not linted: docs/jsdoc (generated jsdoc output)
-[processor.tidy]
+[processor.checker.tidy]
 src_dirs = ["docs"]
 
 # ─── javascript ──────────────────────────────────────────────────────────────
 
 # not linted: docs/jsdoc (generated jsdoc output)
-[processor.oxlint]
+[processor.checker.oxlint]
 src_dirs = ["docs"]
 args = ["-c", ".oxlintrc.json"]
