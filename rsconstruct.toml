@@ -76,7 +76,7 @@ src_files = ["package.json"]
 # ─── html ────────────────────────────────────────────────────────────────────
 
 # not linted: docs/jsdoc (generated jsdoc output)
-[processor.checker.tidy]
+[processor.checker.itidy]
 src_dirs = ["docs"]
 
 # ─── javascript ──────────────────────────────────────────────────────────────
