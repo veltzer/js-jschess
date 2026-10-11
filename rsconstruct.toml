@@ -26,7 +26,7 @@ dep_inputs = [
     "config/jschess.lua",
 ]
 
-[processor.checker.shellcheck]
+[processor.checker.ishellcheck]
 src_dirs = ["scripts", "docs", "config"]
 
 # ─── lua ─────────────────────────────────────────────────────────────────────
