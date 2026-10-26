@@ -4,9 +4,6 @@
 
 version = 1
 
-[rsconstruct]
-version = "0.9.140"
-
 [binary.oxlint]
 url = "https://github.com/oxc-project/oxc/releases/download/oxlint_v1.86.0/oxlint-x86_64-unknown-linux-gnu.tar.gz"
 sha256 = "8ac22aebac95651eb64eff44d4abafeeee5bf606e6c943e3c6648de530c73255"
