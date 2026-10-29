@@ -4,6 +4,11 @@
 
 version = 1
 
+[binary.node]
+url = "https://nodejs.org/dist/v26.13.0/node-v26.13.0-linux-x64.tar.xz"
+sha256 = "d28a96af6c38596f6d9d97c0ee531c13d238d757742387d1928de822d959e997"
+executable_sha256 = "0adde40d1b7dfa57c8bc83cbc319758c3ec6ebba21363bb2fa752ea6b267ad1b"
+
 [binary.oxlint]
 url = "https://github.com/oxc-project/oxc/releases/download/oxlint_v1.86.0/oxlint-x86_64-unknown-linux-gnu.tar.gz"
 sha256 = "8ac22aebac95651eb64eff44d4abafeeee5bf606e6c943e3c6648de530c73255"
