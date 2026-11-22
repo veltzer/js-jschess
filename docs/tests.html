@@ -5,15 +5,16 @@
 		<title>js-jschess - QUnit testing page</title>
 		<link rel="shortcut icon" href="favicon.ico"/>
 
-		<!-- qunit -->
-		<link type="text/css" rel="stylesheet" href="third_party/qunit.css"/>
-
-		<script type="text/javascript" src="jschess.pack.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+		<script type="text/javascript" src="jschess.min.js"></script>
 	</head>
 	<body>
 		<div id="qunit"></div>
-		<!-- this MUST be the position at which to import qunit.js -->
-		<script type="text/javascript" src="third_party/qunit.js"></script>
+		<!-- QUnit goes after its #qunit element -->
+		<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/qunit/2.20.0/qunit.min.css"/>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/qunit/2.20.0/qunit.min.js"></script>
 		<script type="text/javascript" src="tests/Tests.js"></script>
 		<p>
 			Copyright Mark Veltzer © 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026

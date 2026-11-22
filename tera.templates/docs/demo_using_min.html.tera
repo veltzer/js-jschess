@@ -25,51 +25,39 @@
 	<body>
 		<h1>Using the min.js file</h1>
 		<p>
-			In order to use <b>jschess</b> you will either need to .pack.js file which contains all needed libraries (which is discussed
-			elsewhere) or you will need to download the minified version (.min.js) which is discussed here.
-			This is the list of third party libraries used by <b>jschess</b> and their download location...
+			In order to use <b>jschess</b> you load the third party libraries it runs on and then <b>jschess</b> itself,
+			minified (.min.js) as discussed here, or uncompressed for debugging.
+			These are the third party libraries, each from cdnjs:
 		</p>
 		<table border="1">
 			<tr>
 				<td>name</td>
 				<td>version</td>
-				<td>minified from web</td>
-				<td>debug from web</td>
+				<td>minified</td>
+				<td>debug</td>
 				<td>documentation</td>
-				<td>debug from me</td>
-				<td>minified from me</td>
 			</tr>
 			{% for dep in jschess.RUNTIMEDEPS %}
 			<tr>
 				<td>{{ dep.name }}</td>
 				<td>{{ dep.version }}</td>
-				{% if dep.download_url %}
-				<td><a href="{{ dep.download_url }}">download</a></td>
-{% else %}
-				<td>Not available for download</td>
-{% endif %}
-				{% if dep.download_url_debug %}
-				<td><a href="{{ dep.download_url_debug }}">download</a></td>
-{% else %}
-				<td>Not available for download</td>
-{% endif %}
+				<td><a href="{{ dep.url }}">cdnjs</a></td>
+				<td><a href="{{ dep.url_debug }}">cdnjs</a></td>
 				<td><a href="{{ dep.documentation }}">link</a></td>
-				<td><a href="../{{ dep.my_file_debug }}">my download</a></td>
-				<td><a href="../{{ dep.my_file }}">my download</a></td>
 			</tr>
 {% endfor %}
 		</table>
 		<p>
 		Import them so:
 		</p>
-		<pre><code class="html">{{ jschess.JSCHESS_GETJSTHIRDPARTY_ESCAPED | safe }}&gt;</code></pre>
+		<pre><code class="html">{{ jschess.JSCHESS_GETJSTHIRDPARTY_ESCAPED | safe }}</code></pre>
 		<p>
-		Then download the minified <b>jschess</b> file from <a title="jschess compressed download" href="../out/jschess.min.js">here</a>.
+		Then download the minified <b>jschess</b> file from <a title="jschess compressed download" href="jschess.min.js">here</a>.
 		Place the file somewhere on your web server and import it from your HTML like this:
 		</p>
 		<pre><code class="html">&lt;script type=&quot;text/javascript&quot; src=&quot;jschess.min.js&quot;&gt;&lt;/script&gt;</code></pre>
 		If you want to help me debug <b>jschess</b> or are experiencing problems you can download the uncompressed file
-		from <a title="jschess uncompressed download" href="../out/jschess.js">here</a> and use it like this:
+		from <a title="jschess uncompressed download" href="jschess.js">here</a> and use it like this:
 		<pre><code class="html">&lt;script type=&quot;text/javascript&quot; src=&quot;jschess.js&quot;&gt;&lt;/script&gt;</code></pre>
 		You need a place for your board, so place something like this somewhere in your html:
 		<pre><code class="html">&lt;div id=&quot;myid&quot;&gt;&lt;/div&gt;</code></pre>

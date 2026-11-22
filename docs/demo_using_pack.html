@@ -5,13 +5,14 @@
 		<title>js-jschess - Using the pack.js file</title>
 		<link rel="shortcut icon" href="favicon.ico"/>
 
-		<script type="text/javascript" src="jschess.pack.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+		<script type="text/javascript" src="jschess.min.js"></script>
 
-		        <!-- highlight.js -->
-        <script type="text/javascript" src="third_party/highlight.min.js"></script>
-        <link href="third_party/highlight.min.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
-    
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+		<script type="text/javascript">document.addEventListener('DOMContentLoaded', function() { hljs.highlightAll(); });</script>
 
 		<script type="text/javascript">
 			document.observe('dom:loaded', function() {
@@ -26,15 +27,19 @@
 	<body>
 		<h1>Using the pack.js file</h1>
 		<p>
-		When you want to use jschess there are two options. One is to use the .min.js file in which case you need
-		to import all third party modules yourself. The second is to use the .pack.js file in which case you get
-		all the third parties built in.
+		The .pack.js file is the same build as jschess.js, kept under its old name for pages that already use it.
+		It does not include the third party libraries: import them first, as on the
+		<a href="demo_using_min.html">min.js page</a>.
 		</p>
 		<p>
-		When using the .pack.js file download it from <a title="jschess package download" href="../out/jschess.pack.js">here</a>.
+		When using the .pack.js file download it from <a title="jschess package download" href="jschess.pack.js">here</a>.
 		Place the file somewhere on your web server and import it from your HTML like this:
 		</p>
-		<pre><code class="html">&lt;script src=&quot;jschess.pack.js&quot;&gt;&lt;/script&gt;</code></pre>
+		<pre><code class="html">
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;jschess.pack.js&quot;&gt;&lt;/script&gt;</code></pre>
 		<p>
 		You need a place for your board, so place something like this somewhere in your html:
 		</p>

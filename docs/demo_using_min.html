@@ -5,13 +5,14 @@
 		<title>js-jschess - Using the min.js file</title>
 		<link rel="shortcut icon" href="favicon.ico"/>
 
-		<script type="text/javascript" src="jschess.pack.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+		<script type="text/javascript" src="jschess.min.js"></script>
 
-		        <!-- highlight.js -->
-        <script type="text/javascript" src="third_party/highlight.min.js"></script>
-        <link href="third_party/highlight.min.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
-    
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+		<script type="text/javascript">document.addEventListener('DOMContentLoaded', function() { hljs.highlightAll(); });</script>
 
 		<script type="text/javascript">
 			document.observe('dom:loaded', function() {
@@ -26,77 +27,58 @@
 	<body>
 		<h1>Using the min.js file</h1>
 		<p>
-			In order to use <b>jschess</b> you will either need to .pack.js file which contains all needed libraries (which is discussed
-			elsewhere) or you will need to download the minified version (.min.js) which is discussed here.
-			This is the list of third party libraries used by <b>jschess</b> and their download location...
+			In order to use <b>jschess</b> you load the third party libraries it runs on and then <b>jschess</b> itself,
+			minified (.min.js) as discussed here, or uncompressed for debugging.
+			These are the third party libraries, each from cdnjs:
 		</p>
 		<table border="1">
 			<tr>
 				<td>name</td>
 				<td>version</td>
-				<td>minified from web</td>
-				<td>debug from web</td>
+				<td>minified</td>
+				<td>debug</td>
 				<td>documentation</td>
-				<td>debug from me</td>
-				<td>minified from me</td>
 			</tr>
 			
 			<tr>
 				<td>prototype</td>
 				<td>1.7.3</td>
-				
-				<td>Not available for download</td>
-
-				
-				<td><a href="https://ajax.googleapis.com/ajax/libs/prototype/1.7.3.0/prototype.js">download</a></td>
-
+				<td><a href="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js">cdnjs</a></td>
+				<td><a href="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.js">cdnjs</a></td>
 				<td><a href="http://prototypejs.org/learn">link</a></td>
-				<td><a href="../out/web/third_party/prototype.js">my download</a></td>
-				<td><a href="../out/web/third_party/prototype.min.js">my download</a></td>
 			</tr>
 
 			<tr>
 				<td>raphael</td>
-				<td>2.2.0</td>
-				
-				<td><a href="https://raw.githubusercontent.com/DmitryBaranovskiy/raphael/master/raphael.min.js">download</a></td>
-
-				
-				<td><a href="https://raw.githubusercontent.com/DmitryBaranovskiy/raphael/master/raphael.js">download</a></td>
-
-				<td><a href="http://raphaeljs.com/reference.html">link</a></td>
-				<td><a href="../out/web/third_party/raphael.js">my download</a></td>
-				<td><a href="../out/web/third_party/raphael.min.js">my download</a></td>
+				<td>2.3.0</td>
+				<td><a href="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js">cdnjs</a></td>
+				<td><a href="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.js">cdnjs</a></td>
+				<td><a href="https://dmitrybaranovskiy.github.io/raphael/reference.html">link</a></td>
 			</tr>
 
 			<tr>
 				<td>chess.js</td>
-				<td>0.10.2</td>
-				
-				<td>Not available for download</td>
-
-				
-				<td><a href="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js">download</a></td>
-
+				<td>0.10.3</td>
+				<td><a href="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js">cdnjs</a></td>
+				<td><a href="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.js">cdnjs</a></td>
 				<td><a href="https://github.com/jhlywa/chess.js/blob/master/README.md">link</a></td>
-				<td><a href="../out/web/third_party/chess.js">my download</a></td>
-				<td><a href="../out/web/third_party/chess.min.js">my download</a></td>
 			</tr>
 
 		</table>
 		<p>
 		Import them so:
 		</p>
-		<pre><code class="html">&lt;script type=&quot;text/javascript&quot; src=&quot;out/web/third_party/prototype.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;out/web/third_party/raphael.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;out/web/third_party/chess.min.js&quot;&gt;&lt;/script&gt;&gt;</code></pre>
+		<pre><code class="html">
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js&quot;&gt;&lt;/script&gt;</code></pre>
 		<p>
-		Then download the minified <b>jschess</b> file from <a title="jschess compressed download" href="../out/jschess.min.js">here</a>.
+		Then download the minified <b>jschess</b> file from <a title="jschess compressed download" href="jschess.min.js">here</a>.
 		Place the file somewhere on your web server and import it from your HTML like this:
 		</p>
 		<pre><code class="html">&lt;script type=&quot;text/javascript&quot; src=&quot;jschess.min.js&quot;&gt;&lt;/script&gt;</code></pre>
 		If you want to help me debug <b>jschess</b> or are experiencing problems you can download the uncompressed file
-		from <a title="jschess uncompressed download" href="../out/jschess.js">here</a> and use it like this:
+		from <a title="jschess uncompressed download" href="jschess.js">here</a> and use it like this:
 		<pre><code class="html">&lt;script type=&quot;text/javascript&quot; src=&quot;jschess.js&quot;&gt;&lt;/script&gt;</code></pre>
 		You need a place for your board, so place something like this somewhere in your html:
 		<pre><code class="html">&lt;div id=&quot;myid&quot;&gt;&lt;/div&gt;</code></pre>

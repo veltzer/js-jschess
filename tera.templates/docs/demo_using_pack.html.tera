@@ -25,15 +25,16 @@
 	<body>
 		<h1>Using the pack.js file</h1>
 		<p>
-		When you want to use jschess there are two options. One is to use the .min.js file in which case you need
-		to import all third party modules yourself. The second is to use the .pack.js file in which case you get
-		all the third parties built in.
+		The .pack.js file is the same build as jschess.js, kept under its old name for pages that already use it.
+		It does not include the third party libraries: import them first, as on the
+		<a href="demo_using_min.html">min.js page</a>.
 		</p>
 		<p>
-		When using the .pack.js file download it from <a title="jschess package download" href="../out/jschess.pack.js">here</a>.
+		When using the .pack.js file download it from <a title="jschess package download" href="jschess.pack.js">here</a>.
 		Place the file somewhere on your web server and import it from your HTML like this:
 		</p>
-		<pre><code class="html">&lt;script src=&quot;jschess.pack.js&quot;&gt;&lt;/script&gt;</code></pre>
+		<pre><code class="html">{{ jschess.JSCHESS_GETJSTHIRDPARTY_ESCAPED | safe }}
+&lt;script src=&quot;jschess.pack.js&quot;&gt;&lt;/script&gt;</code></pre>
 		<p>
 		You need a place for your board, so place something like this somewhere in your html:
 		</p>

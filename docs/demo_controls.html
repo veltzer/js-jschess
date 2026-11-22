@@ -5,13 +5,14 @@
 		<title>js-jschess - Showing controls</title>
 		<link rel="shortcut icon" href="favicon.ico"/>
 
-		<script type="text/javascript" src="jschess.pack.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prototype/1.7.3/prototype.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+		<script type="text/javascript" src="jschess.min.js"></script>
 
-		        <!-- highlight.js -->
-        <script type="text/javascript" src="third_party/highlight.min.js"></script>
-        <link href="third_party/highlight.min.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
-    
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+		<script type="text/javascript">document.addEventListener('DOMContentLoaded', function() { hljs.highlightAll(); });</script>
 
 		<script type="text/javascript">
 			document.observe('dom:loaded', function() {

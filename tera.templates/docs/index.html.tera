@@ -132,10 +132,9 @@
 			<li><b>{{ project.NAME }}</b> github clone link is <a href="git://github.com/{{ personal.GITHUB_USERNAME }}/{{ project.NAME }}.git">here</a></li>
 			<li><b>{{ project.NAME }}</b> github development is at <a href="https://github.com/{{ personal.GITHUB_USERNAME }}/{{ project.NAME }}">here</a></li>
 			<li><b>{{ project.NAME }}</b> website is at <a href="https://{{ personal.GITHUB_USERNAME }}.github.io/{{ project.NAME }}">here</a></li>
-			<li>latest full build for <b>{{ project.NAME }}</b> is <a href="https://{{ personal.GITHUB_USERNAME }}.github.io/{{ project.NAME }}/out/jschess.js">jschess.js</a></li>
-			<li>latest minified output for <b>{{ project.NAME }}</b> is <a href="https://{{ personal.GITHUB_USERNAME }}.github.io/{{ project.NAME }}/out/jschess.min.js">jschess.min.js</a></li>
-			<li>latest package (with third parties) for <b>{{ project.NAME }}</b> is <a href="https://{{ personal.GITHUB_USERNAME }}.github.io/{{ project.NAME }}/out/jschess.pack.js">jschess.pack.js</a></li>
-			<li>latest sources for <b>{{ project.NAME }}</b> is <a href="https://{{ personal.GITHUB_USERNAME }}.github.io/{{ project.NAME }}/out/jschess.zip">jschess.zip</a></li>
+			<li>latest full build for <b>{{ project.NAME }}</b> is <a href="https://{{ personal.GITHUB_USERNAME }}.github.io/{{ project.NAME }}/jschess.js">jschess.js</a></li>
+			<li>latest minified output for <b>{{ project.NAME }}</b> is <a href="https://{{ personal.GITHUB_USERNAME }}.github.io/{{ project.NAME }}/jschess.min.js">jschess.min.js</a></li>
+			<li>the same build under its old package name for <b>{{ project.NAME }}</b> is <a href="https://{{ personal.GITHUB_USERNAME }}.github.io/{{ project.NAME }}/jschess.pack.js">jschess.pack.js</a> (it does not include the third parties: load them as the pages here do)</li>
 		</ul>
 		<p>
 			Demos of <b>{{ project.NAME }}</b>...

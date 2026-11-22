@@ -8,15 +8,12 @@
 		<title>{{ project.NAME }} - QUnit testing page</title>
 		<link rel="shortcut icon" href="favicon.ico"/>
 
-		<!-- qunit -->
-		<link type="text/css" rel="stylesheet" href="third_party/qunit.css"/>
-
 		{{ jschess.JSCHESS_JS_SECTION | safe }}
 	</head>
 	<body>
 		<div id="qunit"></div>
-		<!-- this MUST be the position at which to import qunit.js -->
-		<script type="text/javascript" src="third_party/qunit.js"></script>
+		<!-- QUnit goes after its #qunit element -->
+		{{ jschess.JSCHESS_QUNIT | safe }}
 		<script type="text/javascript" src="tests/Tests.js"></script>
 		<p>
 			Copyright {{ personal.FULLNAME }} © {{ copyright_years() }}
