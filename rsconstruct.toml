@@ -74,4 +74,5 @@ src_dirs = ["docs"]
 # not linted: docs/jsdoc (generated jsdoc output)
 [processor.checker.oxlint]
 src_dirs = ["docs"]
-args = ["-c", ".oxlintrc.json"]
+args = ["-c", ".oxlintrc.repo.json"]
+dep_inputs = [".oxlintrc.repo.json"]

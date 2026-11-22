@@ -1,0 +1,39 @@
+{
+	// This repo's oxlint config: the fleet's shared rules (.oxlintrc.json,
+	// byte-identical everywhere, through extends), plus what extends does not
+	// carry over: the plugins, the environment this repo's JavaScript runs in,
+	// and the globals its pages get from the libraries their <script> tags
+	// load, so no-undef knows them and still catches every other undefined name.
+	"$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
+	"extends": ["./.oxlintrc.json"],
+	"plugins": ["eslint"],
+	"env": {
+		"browser": true,
+		"node": true,
+		"es2022": true
+	},
+	"globals": {
+		// Prototype (prototype.js): element lookup
+		"$": "readonly",
+		// Prototype (prototype.js): requests
+		"Ajax": "readonly",
+		// chess.js, which a page using jschess loads first: the move rules
+		"Chess": "readonly",
+		// Prototype (prototype.js), which a page using jschess loads first: classes
+		"Class": "readonly",
+		// Raphaël (raphael.js), which a page using jschess loads first: the SVG board
+		"Raphael": "readonly"
+	},
+	"overrides": [
+		{
+			// the QUnit tests page (docs/tests.html) loads QUnit and the jschess bundle before the tests
+			"files": ["docs/tests/*.js"],
+			"globals": {
+				// the test framework, docs/third_party/qunit.js
+				"QUnit": "readonly",
+				// the class under test, from the jschess bundle
+				"PiecePosition": "readonly"
+			}
+		}
+	]
+}

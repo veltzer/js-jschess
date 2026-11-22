@@ -1,8 +1,0 @@
-{% set personal = load_lua(path="config/personal.lua") -%}
-/* This file is a bunch of exten definitions to keep the google
-closure compiler happy */
-function Chess() {};
-function Ajax() {};
-function Raphael() {};
-function Class() {};
-function $() {};

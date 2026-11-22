@@ -3229,20 +3229,3 @@ var WRaphael = Class.create(/** @lends WRaphael.prototype */{
     return r;
   }
 });
-/* This file is a bunch of exten definitions to keep the google
-closure compiler happy */
-function Chess() {};
-function Ajax() {};
-function Raphael() {};
-function Class() {};
-function $() {};
-goog.provide('$');
-goog.provide('Ajax');
-goog.provide('Chess');
-goog.provide('Class');
-goog.provide('Raphael');
-goog.require('$');
-goog.require('Ajax');
-goog.require('Chess');
-goog.require('Class');
-goog.require('Raphael');
