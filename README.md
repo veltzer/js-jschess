@@ -5,7 +5,7 @@
 
 description: jschess is a JavaScript based chess board
 
-project website: https://veltzer.github.io/js-jschess
+project website: <https://veltzer.github.io/js-jschess>
 
 author: Mark Veltzer
 
