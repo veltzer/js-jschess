@@ -16,7 +16,7 @@ var SvgCreator = Class.create(/** @lends SvgCreator.prototype */{
     @author {{ personal.JSDOC_AUTHOR }}
   */
   initialize: function() {
-    return;
+    // nothing to initialize
   }
 });
 
@@ -385,5 +385,5 @@ SvgCreator.createPiece = function(config, pieceColor, pieceType) {
       return svgPiece;
     }
   }
-  throw 'unknown piece ' + pieceType;
+  throw new Error('unknown piece ' + pieceType);
 };

@@ -155,11 +155,11 @@ BoardPosition.setupFEN = function(fen) {
   var irank, iletter, rank, letter;
   var blocks = fen.split(' ');
   if (blocks.length !== 6) {
-    throw 'parse error - number of blocks is not 6';
+    throw new Error('parse error - number of blocks is not 6');
   }
   var ranks = blocks[0].split('/');
   if (ranks.length !== 8) {
-    throw 'parse error - number of ranks is not 8';
+    throw new Error('parse error - number of ranks is not 8');
   }
   var newPos = new BoardPosition();
   for (irank = 7; irank >= 0; irank--) {

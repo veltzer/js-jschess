@@ -43,7 +43,7 @@ var SvgCreator = Class.create(/** @lends SvgCreator.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   initialize: function() {
-    return;
+    // nothing to initialize
   }
 });
 
@@ -412,7 +412,7 @@ SvgCreator.createPiece = function(config, pieceColor, pieceType) {
       return svgPiece;
     }
   }
-  throw 'unknown piece ' + pieceType;
+  throw new Error('unknown piece ' + pieceType);
 };
 </code></pre>
         </article>

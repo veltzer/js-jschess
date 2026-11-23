@@ -35,11 +35,11 @@ var ConfigTmpl = Class.create(/** @lends ConfigTmpl.prototype */{
   */
   add: function(s) {
     Utils.checkEquals(s, ConfigTmpl.fullSet);
-    if (!(Object.prototype.hasOwnProperty.call(ConfigTmpl.types, s.type))) {
-      throw 'bad type [' + s.type + ']';
+    if (!(Object.hasOwn(ConfigTmpl.types, s.type))) {
+      throw new Error('bad type [' + s.type + ']');
     }
-    if (Object.prototype.hasOwnProperty.call(this.tuples, s.name)) {
-      throw 'repeat of key [' + s.name + ']';
+    if (Object.hasOwn(this.tuples, s.name)) {
+      throw new Error('repeat of key [' + s.name + ']');
     }
     this.tuples[s.name] = s;
     this.tuplist.push(s);
@@ -53,8 +53,8 @@ var ConfigTmpl = Class.create(/** @lends ConfigTmpl.prototype */{
     @author {{ personal.JSDOC_AUTHOR }}
   */
   check: function(key, value) {
-    if (!(Object.prototype.hasOwnProperty.call(this.tuples, key))) {
-      throw 'wrong key [' + key + ']';
+    if (!(Object.hasOwn(this.tuples, key))) {
+      throw new Error('wrong key [' + key + ']');
     }
     var type_to_check = this.tuples[key].type;
     var our_type = ConfigTmpl.types[type_to_check];
@@ -68,7 +68,7 @@ var ConfigTmpl = Class.create(/** @lends ConfigTmpl.prototype */{
     @author {{ personal.JSDOC_AUTHOR }}
   */
   hasKey: function(key) {
-    return Object.prototype.hasOwnProperty.call(this.tuples, key);
+    return Object.hasOwn(this.tuples, key);
   },
   /**
     return the default value for a key

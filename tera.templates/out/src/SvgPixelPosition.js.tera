@@ -18,10 +18,10 @@ var SvgPixelPosition = Class.create(/** @lends SvgPixelPosition.prototype */{
   initialize: function(x, y) {
     /*
     if(x<0) {
-      throw 'bad value for x '+x+','+typeof(x);
+      throw new Error('bad value for x '+x+','+typeof(x));
     }
     if(y<0) {
-      throw 'bad value for y '+y+','+typeof(y);
+      throw new Error('bad value for y '+y+','+typeof(y));
     }
     */
     this.x = x;

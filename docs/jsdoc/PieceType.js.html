@@ -42,8 +42,8 @@ var PieceType = Class.create(/** @lends PieceType.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   initialize: function(type) {
-    if (!(Object.prototype.hasOwnProperty.call(PieceType.types, type))) {
-      throw 'illegal piecetype ' + type;
+    if (!(Object.hasOwn(PieceType.types, type))) {
+      throw new Error('illegal piecetype ' + type);
     }
     this.type = type;
   },

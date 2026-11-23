@@ -13,7 +13,7 @@ var Utils = Class.create(/** @lends Utils.prototype */{
     @author {{ personal.JSDOC_AUTHOR }}
   */
   initialize: function() {
-    return;
+    // nothing to initialize
   }
 });
 
@@ -28,13 +28,12 @@ var Utils = Class.create(/** @lends Utils.prototype */{
 */
 Utils.unite = function(o1, o2) {
   var ret = {};
-  var x, y;
-  for (x in o1) {
-    ret[x] = o1[x];
-  }
-  for (y in o2) {
-    ret[y] = o2[y];
-  }
+  Object.keys(o1).forEach(function(k) {
+    ret[k] = o1[k];
+  });
+  Object.keys(o2).forEach(function(k) {
+    ret[k] = o2[k];
+  });
   return ret;
 };
 
@@ -47,10 +46,9 @@ Utils.unite = function(o1, o2) {
 */
 Utils.clone = function(o) {
   var ret = {};
-  var x;
-  for (x in o) {
-    ret[x] = o[x];
-  }
+  Object.keys(o).forEach(function(k) {
+    ret[k] = o[k];
+  });
   return ret;
 };
 
@@ -75,7 +73,7 @@ Utils.fakeUse = function() {
   @author {{ personal.JSDOC_AUTHOR }}
 */
 Utils.pass = function() {
-  return;
+  // intentionally does nothing
 };
 
 
@@ -118,7 +116,7 @@ Utils.getType = function(v) {
 */
 Utils.checkType = function(v, t) {
   if (Utils.getType(v) !== t) {
-    throw 'type is wrong';
+    throw new Error('type is wrong');
   }
 };
 
@@ -131,12 +129,11 @@ Utils.checkType = function(v, t) {
   @author {{ personal.JSDOC_AUTHOR }}
 */
 Utils.checkContains = function(s1, s2) {
-  var x;
-  for (x in s1) {
-    if (!(Object.prototype.hasOwnProperty.call(s2, x))) {
-      throw 'key ' + x + ' is bad';
+  Object.keys(s1).forEach(function(x) {
+    if (!(Object.hasOwn(s2, x))) {
+      throw new Error('key ' + x + ' is bad');
     }
-  }
+  });
 };
 
 

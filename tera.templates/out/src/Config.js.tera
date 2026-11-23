@@ -53,7 +53,7 @@ var Config = Class.create(/** @lends Config.prototype */{
       }
       return this.tmpl.getDefaultValue(key);
     }
-    throw 'request for bad key [' + key + ']';
+    throw new Error('request for bad key [' + key + ']');
   },
   /**
     set a key to a certain value in the current configuration
@@ -74,10 +74,9 @@ var Config = Class.create(/** @lends Config.prototype */{
     @author {{ personal.JSDOC_AUTHOR }}
   */
   override: function(d) {
-    var x;
-    for (x in d) {
+    Object.keys(d).forEach(function(x) {
       this.setValue(x, d[x]);
-    }
+    }, this);
   },
   /**
     check that the config is good to go
@@ -87,6 +86,5 @@ var Config = Class.create(/** @lends Config.prototype */{
   */
   check: function() {
     // TODO
-    return;
   }
 });

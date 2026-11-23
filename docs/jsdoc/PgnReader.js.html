@@ -42,7 +42,7 @@ var PgnReader = Class.create(/** @lends PgnReader.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   initialize: function() {
-    return;
+    // nothing to initialize
   },
   /**
     toString method so that you can get a nice printout of instances of
@@ -51,7 +51,7 @@ var PgnReader = Class.create(/** @lends PgnReader.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   toString: function() {
-    throw 'toString for PgnReader not implemented yet';
+    throw new Error('toString for PgnReader not implemented yet');
   },
   /**
     A method to read a pgn file via ajax.

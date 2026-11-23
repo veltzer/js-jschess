@@ -185,12 +185,10 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
       } else {
         val = this.getValue('white_square_color');
       }
+    } else if (this.getValue('gradients')) {
+      val = this.getValue('black_square_gradient');
     } else {
-      if (this.getValue('gradients')) {
-        val = this.getValue('black_square_gradient');
-      } else {
-        val = this.getValue('black_square_color');
-      }
+      val = this.getValue('black_square_color');
     }
     if (anim) {
       // TODO: animation with gradients looks bad
@@ -260,7 +258,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
     if (this.boardview === 'right') {
       return new PiecePosition(7 - pos.y, 7 - pos.x);
     }
-    throw 'boardview is not correct';
+    throw new Error('boardview is not correct');
   },
   /**
     Draw the board (white and black squares)
@@ -434,7 +432,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
           piecePosition.x * this.square
       );
     }
-    throw 'boardview is bad';
+    throw new Error('boardview is bad');
   },
   /**
     Translates pixel position (x,y) to board position (0..7,0..7)
@@ -459,7 +457,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
     if (this.boardview === 'right') {
       return new PiecePosition(7 - y, x);
     }
-    throw 'boardview is bad';
+    throw new Error('boardview is bad');
   },
   /**
     Forgiving version of the previous function.
@@ -486,7 +484,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
     if (this.boardview === 'right') {
       return new PiecePosition(7 - y, x);
     }
-    throw 'boardview is bad';
+    throw new Error('boardview is bad');
   },
   /**
     Resize the board
@@ -593,7 +591,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
         this.boardview = 'left';
         break;
       default:
-        throw 'boardview is bad';
+        throw new Error('boardview is bad');
     }
     // now redraw the board (after the change of view)
     this.redraw(oldview);
@@ -605,8 +603,8 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
   */
   rotateright: function() {
     var oldview = this.boardview;
-    if (!(Object.prototype.hasOwnProperty.call(SvgBoard.ObjRotateRight, oldview))) {
-      throw 'boardview is bad';
+    if (!(Object.hasOwn(SvgBoard.ObjRotateRight, oldview))) {
+      throw new Error('boardview is bad');
     }
     this.boardview = SvgBoard.ObjRotateRight[this.boardview];
     // now redraw the board (after the change of view)
@@ -619,8 +617,8 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
   */
   rotateleft: function() {
     var oldview = this.boardview;
-    if (!(Object.prototype.hasOwnProperty.call(SvgBoard.ObjRotateLeft, oldview))) {
-      throw 'boardview is bad';
+    if (!(Object.hasOwn(SvgBoard.ObjRotateLeft, oldview))) {
+      throw new Error('boardview is bad');
     }
     this.boardview = SvgBoard.ObjRotateLeft[this.boardview];
     // now redraw the board (after the change of view)
@@ -634,7 +632,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   toString: function() {
-    throw 'not yet implemented';
+    throw new Error('not yet implemented');
   },
   /**
     Make a piece glow
@@ -773,12 +771,10 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
             this.lastPos = undefined;
             this.currentPos = piecePosition;
             this.newPosition();
-          } else {
-            if (piecePosition.notEqual(this.currentPos)) {
-              this.lastPos = this.currentPos;
-              this.currentPos = piecePosition;
-              this.newPosition();
-            }
+          } else if (piecePosition.notEqual(this.currentPos)) {
+            this.lastPos = this.currentPos;
+            this.currentPos = piecePosition;
+            this.newPosition();
           }
         } else {
           // forget about this event?!?
@@ -837,12 +833,10 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
             this.glow(this.selectedPiece, true);
           }
         }
-      } else {
-        if (this.selectedPiece !== undefined) {
-          if (this.getValue('do_select_piece')) {
-            this.glow(this.selectedPiece, false);
-            this.selectedPiece = undefined;
-          }
+      } else if (this.selectedPiece !== undefined) {
+        if (this.getValue('do_select_piece')) {
+          this.glow(this.selectedPiece, false);
+          this.selectedPiece = undefined;
         }
       }
       if (this.getValue('do_select_square')) {
@@ -880,7 +874,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
     if (this.boardview === 'right') {
       return this.recs[7 - piecePosition.y][7 - piecePosition.x];
     }
-    throw 'boardview is bad';
+    throw new Error('boardview is bad');
   }
 });
 

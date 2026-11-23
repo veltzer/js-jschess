@@ -65,7 +65,7 @@ var Board = Class.create(/** @lends Board.prototype */{
   */
   checkNoPieceAt: function(piecePosition) {
     if (this.bd[piecePosition.x][piecePosition.y] !== undefined) {
-      throw 'already have piece at position ' + piecePosition.toString();
+      throw new Error('already have piece at position ' + piecePosition.toString());
     }
   },
   /**
@@ -77,7 +77,7 @@ var Board = Class.create(/** @lends Board.prototype */{
   */
   checkPieceAt: function(piecePosition) {
     if (this.bd[piecePosition.x][piecePosition.y] === undefined) {
-      throw 'dont have piece at position ' + piecePosition.toString();
+      throw new Error('dont have piece at position ' + piecePosition.toString());
     }
   },
   /**
@@ -90,7 +90,7 @@ var Board = Class.create(/** @lends Board.prototype */{
   */
   checkBoardPieceAt: function(boardPiece, piecePosition) {
     if (this.bd[piecePosition.x][piecePosition.y] !== boardPiece) {
-      throw 'wrong piece at position ' + piecePosition.toString();
+      throw new Error('wrong piece at position ' + piecePosition.toString());
     }
   },
   /**
@@ -306,7 +306,7 @@ var Board = Class.create(/** @lends Board.prototype */{
         }
       }
     }
-    throw 'piece not on board ' + boardPiece;
+    throw new Error('piece not on board ' + boardPiece);
   }
 });
 
@@ -500,11 +500,11 @@ BoardPosition.setupFEN = function(fen) {
   var irank, iletter, rank, letter;
   var blocks = fen.split(' ');
   if (blocks.length !== 6) {
-    throw 'parse error - number of blocks is not 6';
+    throw new Error('parse error - number of blocks is not 6');
   }
   var ranks = blocks[0].split('/');
   if (ranks.length !== 8) {
-    throw 'parse error - number of ranks is not 8';
+    throw new Error('parse error - number of ranks is not 8');
   }
   var newPos = new BoardPosition();
   for (irank = 7; irank >= 0; irank--) {
@@ -610,7 +610,7 @@ var Config = Class.create(/** @lends Config.prototype */{
       }
       return this.tmpl.getDefaultValue(key);
     }
-    throw 'request for bad key [' + key + ']';
+    throw new Error('request for bad key [' + key + ']');
   },
   /**
     set a key to a certain value in the current configuration
@@ -631,10 +631,9 @@ var Config = Class.create(/** @lends Config.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   override: function(d) {
-    var x;
-    for (x in d) {
+    Object.keys(d).forEach(function(x) {
       this.setValue(x, d[x]);
-    }
+    }, this);
   },
   /**
     check that the config is good to go
@@ -644,7 +643,6 @@ var Config = Class.create(/** @lends Config.prototype */{
   */
   check: function() {
     // TODO
-    return;
   }
 });
 /* vim:set filetype=javascript:*/
@@ -683,11 +681,11 @@ var ConfigTmpl = Class.create(/** @lends ConfigTmpl.prototype */{
   */
   add: function(s) {
     Utils.checkEquals(s, ConfigTmpl.fullSet);
-    if (!(Object.prototype.hasOwnProperty.call(ConfigTmpl.types, s.type))) {
-      throw 'bad type [' + s.type + ']';
+    if (!(Object.hasOwn(ConfigTmpl.types, s.type))) {
+      throw new Error('bad type [' + s.type + ']');
     }
-    if (Object.prototype.hasOwnProperty.call(this.tuples, s.name)) {
-      throw 'repeat of key [' + s.name + ']';
+    if (Object.hasOwn(this.tuples, s.name)) {
+      throw new Error('repeat of key [' + s.name + ']');
     }
     this.tuples[s.name] = s;
     this.tuplist.push(s);
@@ -701,8 +699,8 @@ var ConfigTmpl = Class.create(/** @lends ConfigTmpl.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   check: function(key, value) {
-    if (!(Object.prototype.hasOwnProperty.call(this.tuples, key))) {
-      throw 'wrong key [' + key + ']';
+    if (!(Object.hasOwn(this.tuples, key))) {
+      throw new Error('wrong key [' + key + ']');
     }
     var type_to_check = this.tuples[key].type;
     var our_type = ConfigTmpl.types[type_to_check];
@@ -716,7 +714,7 @@ var ConfigTmpl = Class.create(/** @lends ConfigTmpl.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   hasKey: function(key) {
-    return Object.prototype.hasOwnProperty.call(this.tuples, key);
+    return Object.hasOwn(this.tuples, key);
   },
   /**
     return the default value for a key
@@ -841,7 +839,7 @@ var Game = Class.create(/** @lends Game.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   initialize: function() {
-    return;
+    // nothing to initialize
   },
   /**
     toString method that allows you to get a nice printout for this type
@@ -880,7 +878,7 @@ var GameMove = Class.create(/** @lends GameMove.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   initialize: function() {
-    return;
+    // nothing to initialize
   },
   /**
     Debug method that allows you to get a nice printout for this type
@@ -910,7 +908,7 @@ var PgnReader = Class.create(/** @lends PgnReader.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   initialize: function() {
-    return;
+    // nothing to initialize
   },
   /**
     toString method so that you can get a nice printout of instances of
@@ -919,7 +917,7 @@ var PgnReader = Class.create(/** @lends PgnReader.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   toString: function() {
-    throw 'toString for PgnReader not implemented yet';
+    throw new Error('toString for PgnReader not implemented yet');
   },
   /**
     A method to read a pgn file via ajax.
@@ -966,8 +964,8 @@ var PieceColor = Class.create(/** @lends PieceColor.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   initialize: function(color) {
-    if (!(Object.prototype.hasOwnProperty.call(PieceColor.colors, color))) {
-      throw 'illegal piecetype ' + color;
+    if (!(Object.hasOwn(PieceColor.colors, color))) {
+      throw new Error('illegal piecetype ' + color);
     }
     this.color = color;
   },
@@ -1031,10 +1029,10 @@ var PiecePosition = Class.create(/** @lends PiecePosition.prototype */{
     Utils.checkType(x, 'number');
     Utils.checkType(y, 'number');
     if (x < 0 || x > 7) {
-      throw 'bad value for x ' + x + ',' + typeof x;
+      throw new Error('bad value for x ' + x + ',' + typeof x);
     }
     if (y < 0 || y > 7) {
-      throw 'bad value for y ' + y + ',' + typeof y;
+      throw new Error('bad value for y ' + y + ',' + typeof y);
     }
     this.x = x;
     this.y = y;
@@ -1058,7 +1056,7 @@ var PiecePosition = Class.create(/** @lends PiecePosition.prototype */{
   */
   notEqual: function(otherPos) {
     if (!(otherPos instanceof PiecePosition)) {
-      throw 'bad type passed';
+      throw new Error('bad type passed');
     }
     return otherPos.x !== this.x || otherPos.y !== this.y;
   },
@@ -1071,7 +1069,7 @@ var PiecePosition = Class.create(/** @lends PiecePosition.prototype */{
   */
   equal: function(otherPos) {
     if (!(otherPos instanceof PiecePosition)) {
-      throw 'bad type passed';
+      throw new Error('bad type passed');
     }
     return otherPos.x === this.x && otherPos.y === this.y;
   }
@@ -1092,8 +1090,8 @@ var PieceType = Class.create(/** @lends PieceType.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   initialize: function(type) {
-    if (!(Object.prototype.hasOwnProperty.call(PieceType.types, type))) {
-      throw 'illegal piecetype ' + type;
+    if (!(Object.hasOwn(PieceType.types, type))) {
+      throw new Error('illegal piecetype ' + type);
     }
     this.type = type;
   },
@@ -1334,12 +1332,10 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
       } else {
         val = this.getValue('white_square_color');
       }
+    } else if (this.getValue('gradients')) {
+      val = this.getValue('black_square_gradient');
     } else {
-      if (this.getValue('gradients')) {
-        val = this.getValue('black_square_gradient');
-      } else {
-        val = this.getValue('black_square_color');
-      }
+      val = this.getValue('black_square_color');
     }
     if (anim) {
       // TODO: animation with gradients looks bad
@@ -1409,7 +1405,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
     if (this.boardview === 'right') {
       return new PiecePosition(7 - pos.y, 7 - pos.x);
     }
-    throw 'boardview is not correct';
+    throw new Error('boardview is not correct');
   },
   /**
     Draw the board (white and black squares)
@@ -1583,7 +1579,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
           piecePosition.x * this.square
       );
     }
-    throw 'boardview is bad';
+    throw new Error('boardview is bad');
   },
   /**
     Translates pixel position (x,y) to board position (0..7,0..7)
@@ -1608,7 +1604,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
     if (this.boardview === 'right') {
       return new PiecePosition(7 - y, x);
     }
-    throw 'boardview is bad';
+    throw new Error('boardview is bad');
   },
   /**
     Forgiving version of the previous function.
@@ -1635,7 +1631,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
     if (this.boardview === 'right') {
       return new PiecePosition(7 - y, x);
     }
-    throw 'boardview is bad';
+    throw new Error('boardview is bad');
   },
   /**
     Resize the board
@@ -1742,7 +1738,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
         this.boardview = 'left';
         break;
       default:
-        throw 'boardview is bad';
+        throw new Error('boardview is bad');
     }
     // now redraw the board (after the change of view)
     this.redraw(oldview);
@@ -1754,8 +1750,8 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
   */
   rotateright: function() {
     var oldview = this.boardview;
-    if (!(Object.prototype.hasOwnProperty.call(SvgBoard.ObjRotateRight, oldview))) {
-      throw 'boardview is bad';
+    if (!(Object.hasOwn(SvgBoard.ObjRotateRight, oldview))) {
+      throw new Error('boardview is bad');
     }
     this.boardview = SvgBoard.ObjRotateRight[this.boardview];
     // now redraw the board (after the change of view)
@@ -1768,8 +1764,8 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
   */
   rotateleft: function() {
     var oldview = this.boardview;
-    if (!(Object.prototype.hasOwnProperty.call(SvgBoard.ObjRotateLeft, oldview))) {
-      throw 'boardview is bad';
+    if (!(Object.hasOwn(SvgBoard.ObjRotateLeft, oldview))) {
+      throw new Error('boardview is bad');
     }
     this.boardview = SvgBoard.ObjRotateLeft[this.boardview];
     // now redraw the board (after the change of view)
@@ -1783,7 +1779,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   toString: function() {
-    throw 'not yet implemented';
+    throw new Error('not yet implemented');
   },
   /**
     Make a piece glow
@@ -1922,12 +1918,10 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
             this.lastPos = undefined;
             this.currentPos = piecePosition;
             this.newPosition();
-          } else {
-            if (piecePosition.notEqual(this.currentPos)) {
-              this.lastPos = this.currentPos;
-              this.currentPos = piecePosition;
-              this.newPosition();
-            }
+          } else if (piecePosition.notEqual(this.currentPos)) {
+            this.lastPos = this.currentPos;
+            this.currentPos = piecePosition;
+            this.newPosition();
           }
         } else {
           // forget about this event?!?
@@ -1986,12 +1980,10 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
             this.glow(this.selectedPiece, true);
           }
         }
-      } else {
-        if (this.selectedPiece !== undefined) {
-          if (this.getValue('do_select_piece')) {
-            this.glow(this.selectedPiece, false);
-            this.selectedPiece = undefined;
-          }
+      } else if (this.selectedPiece !== undefined) {
+        if (this.getValue('do_select_piece')) {
+          this.glow(this.selectedPiece, false);
+          this.selectedPiece = undefined;
         }
       }
       if (this.getValue('do_select_square')) {
@@ -2029,7 +2021,7 @@ var SvgBoard = Class.create(/** @lends SvgBoard.prototype */{
     if (this.boardview === 'right') {
       return this.recs[7 - piecePosition.y][7 - piecePosition.x];
     }
-    throw 'boardview is bad';
+    throw new Error('boardview is bad');
   }
 });
 
@@ -2349,7 +2341,7 @@ var SvgCreator = Class.create(/** @lends SvgCreator.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   initialize: function() {
-    return;
+    // nothing to initialize
   }
 });
 
@@ -2718,7 +2710,7 @@ SvgCreator.createPiece = function(config, pieceColor, pieceType) {
       return svgPiece;
     }
   }
-  throw 'unknown piece ' + pieceType;
+  throw new Error('unknown piece ' + pieceType);
 };
 /* vim:set filetype=javascript:*/
 
@@ -2870,10 +2862,10 @@ var SvgPixelPosition = Class.create(/** @lends SvgPixelPosition.prototype */{
   initialize: function(x, y) {
     /*
     if(x<0) {
-      throw 'bad value for x '+x+','+typeof(x);
+      throw new Error('bad value for x '+x+','+typeof(x));
     }
     if(y<0) {
-      throw 'bad value for y '+y+','+typeof(y);
+      throw new Error('bad value for y '+y+','+typeof(y));
     }
     */
     this.x = x;
@@ -2904,7 +2896,7 @@ var Utils = Class.create(/** @lends Utils.prototype */{
     @author mark.veltzer@gmail.com (Mark Veltzer)
   */
   initialize: function() {
-    return;
+    // nothing to initialize
   }
 });
 
@@ -2919,13 +2911,12 @@ var Utils = Class.create(/** @lends Utils.prototype */{
 */
 Utils.unite = function(o1, o2) {
   var ret = {};
-  var x, y;
-  for (x in o1) {
-    ret[x] = o1[x];
-  }
-  for (y in o2) {
-    ret[y] = o2[y];
-  }
+  Object.keys(o1).forEach(function(k) {
+    ret[k] = o1[k];
+  });
+  Object.keys(o2).forEach(function(k) {
+    ret[k] = o2[k];
+  });
   return ret;
 };
 
@@ -2938,10 +2929,9 @@ Utils.unite = function(o1, o2) {
 */
 Utils.clone = function(o) {
   var ret = {};
-  var x;
-  for (x in o) {
-    ret[x] = o[x];
-  }
+  Object.keys(o).forEach(function(k) {
+    ret[k] = o[k];
+  });
   return ret;
 };
 
@@ -2966,7 +2956,7 @@ Utils.fakeUse = function() {
   @author mark.veltzer@gmail.com (Mark Veltzer)
 */
 Utils.pass = function() {
-  return;
+  // intentionally does nothing
 };
 
 
@@ -3009,7 +2999,7 @@ Utils.getType = function(v) {
 */
 Utils.checkType = function(v, t) {
   if (Utils.getType(v) !== t) {
-    throw 'type is wrong';
+    throw new Error('type is wrong');
   }
 };
 
@@ -3022,12 +3012,11 @@ Utils.checkType = function(v, t) {
   @author mark.veltzer@gmail.com (Mark Veltzer)
 */
 Utils.checkContains = function(s1, s2) {
-  var x;
-  for (x in s1) {
-    if (!(Object.prototype.hasOwnProperty.call(s2, x))) {
-      throw 'key ' + x + ' is bad';
+  Object.keys(s1).forEach(function(x) {
+    if (!(Object.hasOwn(s2, x))) {
+      throw new Error('key ' + x + ' is bad');
     }
-  }
+  });
 };
 
 
@@ -3157,7 +3146,7 @@ var WSet = Class.create(/** @lends WSet.prototype */{
             });
             break;
           default:
-            throw 'unknown event name ' + eventName;
+            throw new Error('unknown event name ' + eventName);
         }
       });
     });

@@ -66,7 +66,7 @@ var Board = Class.create(/** @lends Board.prototype */{
   */
   checkNoPieceAt: function(piecePosition) {
     if (this.bd[piecePosition.x][piecePosition.y] !== undefined) {
-      throw 'already have piece at position ' + piecePosition.toString();
+      throw new Error('already have piece at position ' + piecePosition.toString());
     }
   },
   /**
@@ -78,7 +78,7 @@ var Board = Class.create(/** @lends Board.prototype */{
   */
   checkPieceAt: function(piecePosition) {
     if (this.bd[piecePosition.x][piecePosition.y] === undefined) {
-      throw 'dont have piece at position ' + piecePosition.toString();
+      throw new Error('dont have piece at position ' + piecePosition.toString());
     }
   },
   /**
@@ -91,7 +91,7 @@ var Board = Class.create(/** @lends Board.prototype */{
   */
   checkBoardPieceAt: function(boardPiece, piecePosition) {
     if (this.bd[piecePosition.x][piecePosition.y] !== boardPiece) {
-      throw 'wrong piece at position ' + piecePosition.toString();
+      throw new Error('wrong piece at position ' + piecePosition.toString());
     }
   },
   /**
@@ -307,7 +307,7 @@ var Board = Class.create(/** @lends Board.prototype */{
         }
       }
     }
-    throw 'piece not on board ' + boardPiece;
+    throw new Error('piece not on board ' + boardPiece);
   }
 });
 

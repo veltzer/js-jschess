@@ -21,6 +21,7 @@ for arg in "$@"; do
 			if [ "${mode}" = "inputs" ]; then
 				case "${arg}" in
 					out/src/*.js) sources+=("${arg}") ;;
+					*) ;; # only compiled sources are inputs
 				esac
 			fi
 			;;

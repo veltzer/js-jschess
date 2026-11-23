@@ -114,7 +114,7 @@ var WSet = Class.create(/** @lends WSet.prototype */{
             });
             break;
           default:
-            throw 'unknown event name ' + eventName;
+            throw new Error('unknown event name ' + eventName);
         }
       });
     });

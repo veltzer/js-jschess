@@ -16,8 +16,8 @@ var PieceColor = Class.create(/** @lends PieceColor.prototype */{
     @author {{ personal.JSDOC_AUTHOR }}
   */
   initialize: function(color) {
-    if (!(Object.prototype.hasOwnProperty.call(PieceColor.colors, color))) {
-      throw 'illegal piecetype ' + color;
+    if (!(Object.hasOwn(PieceColor.colors, color))) {
+      throw new Error('illegal piecetype ' + color);
     }
     this.color = color;
   },

@@ -48,10 +48,10 @@ var PiecePosition = Class.create(/** @lends PiecePosition.prototype */{
     Utils.checkType(x, 'number');
     Utils.checkType(y, 'number');
     if (x &lt; 0 || x > 7) {
-      throw 'bad value for x ' + x + ',' + typeof x;
+      throw new Error('bad value for x ' + x + ',' + typeof x);
     }
     if (y &lt; 0 || y > 7) {
-      throw 'bad value for y ' + y + ',' + typeof y;
+      throw new Error('bad value for y ' + y + ',' + typeof y);
     }
     this.x = x;
     this.y = y;
@@ -75,7 +75,7 @@ var PiecePosition = Class.create(/** @lends PiecePosition.prototype */{
   */
   notEqual: function(otherPos) {
     if (!(otherPos instanceof PiecePosition)) {
-      throw 'bad type passed';
+      throw new Error('bad type passed');
     }
     return otherPos.x !== this.x || otherPos.y !== this.y;
   },
@@ -88,7 +88,7 @@ var PiecePosition = Class.create(/** @lends PiecePosition.prototype */{
   */
   equal: function(otherPos) {
     if (!(otherPos instanceof PiecePosition)) {
-      throw 'bad type passed';
+      throw new Error('bad type passed');
     }
     return otherPos.x === this.x &amp;&amp; otherPos.y === this.y;
   }
