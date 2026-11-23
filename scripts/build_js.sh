@@ -18,7 +18,7 @@ for arg in "$@"; do
 		--inputs) mode="inputs" ;;
 		--output-files|--output-dirs) mode="" ;;
 		*)
-			if [ "${mode}" = "inputs" ]; then
+			if [[ "${mode}" = "inputs" ]]; then
 				case "${arg}" in
 					out/src/*.js) sources+=("${arg}") ;;
 					*) ;; # only compiled sources are inputs
@@ -28,13 +28,13 @@ for arg in "$@"; do
 	esac
 done
 
-if [ "${#sources[@]}" -eq 0 ]; then
+if [[ "${#sources[@]}" -eq 0 ]]; then
 	echo "error: no out/src/*.js inputs passed" >&2
 	exit 1
 fi
 
 # node_modules is gitignored; provision it when the tools are missing (CI).
-if [ ! -x node_modules/.bin/yuicompressor ] || [ ! -x node_modules/.bin/jsdoc ]; then
+if [[ ! -x node_modules/.bin/yuicompressor ]] || [[ ! -x node_modules/.bin/jsdoc ]]; then
 	npm install --no-audit --no-fund
 fi
 
