@@ -70,7 +70,7 @@ src_files = ["README.md"]
 
 [processor.checker.ijsonlint]
 src_dirs = ["support"]
-src_files = ["package.json"]
+src_files = ["package-lock.json", "package.json"]
 
 # ─── html ────────────────────────────────────────────────────────────────────
 
